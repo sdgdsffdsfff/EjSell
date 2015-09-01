@@ -17,8 +17,8 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath*:com/ensell/spring/applicationContext-*.xml,
-			classpath*:com/ensell/*/aop/*-Aop.xml
+			classpath*:com/ejsell/spring/applicationContext-*.xml,
+			classpath*:com/ejsell/*/aop/*-Aop.xml
 		</param-value>
 	</context-param>
 
@@ -28,7 +28,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				classpath*:com/ensell/spring/springmvc-servlet.xml
+				classpath*:com/ejsell/spring/springmvc-servlet.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
@@ -57,7 +57,7 @@
 	</session-config>
 	<servlet>
 		<servlet-name>InitProjectInfo</servlet-name>
-		<servlet-class>com.ensell.base.action.InitProjectInfo</servlet-class>
+		<servlet-class>com.ejsell.base.action.InitProjectInfo</servlet-class>
 		<init-param>
 			<param-name>version</param-name>
 			<param-value>ver1.0.0</param-value>
