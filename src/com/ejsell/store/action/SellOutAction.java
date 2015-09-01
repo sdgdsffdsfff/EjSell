@@ -52,7 +52,7 @@ public class SellOutAction extends BaseActionImpl implements BaseAction<SellOut>
 	}
 
 	/**
-	 * æ•°æ®å¯¼å…¥é¡µ
+	 * µ¼Èë´úÏú³ö¿âÒ³Ãæ
 	 * 
 	 * @return
 	 */

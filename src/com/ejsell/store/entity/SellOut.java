@@ -1,20 +1,20 @@
 package com.ejsell.store.entity;
 
 /**
- * é”€å”®å‘è´§
+ * ´úÏú³ö¿âµ¥
  * 
- * @author é™ˆæ·
+ * @author ³Â½İ
  *
  */
 public class SellOut {
 
 	private Long id;
-	private String model;// æ¬¾å·
-	private String color;// é¢œè‰²
-	private String size;// å°ºå¯¸
-	private int amount;// æ•°é‡
-	private double price;// å•ä»·
-
+	private String model;// ¿îºÅ
+	private String color;// ÑÕÉ«
+	private String size;// ³ßÂë
+	private int amount;// ÊıÁ¿
+	private double price;// µ¥¼Û
+	
 	public Long getId() {
 		return id;
 	}

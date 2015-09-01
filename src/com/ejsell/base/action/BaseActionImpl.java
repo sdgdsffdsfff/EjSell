@@ -24,16 +24,16 @@ import com.chenjie.util.DateUtils;
 import com.chenjie.util.FileUtils;
 
 /**
- * ActionåŸºç¡€å®ç°ç±»
+ * Action»ù´¡ÊµÏÖÀà
  * 
- * @author é™ˆæ·
+ * @author ³Â½İ
  *
  */
 public class BaseActionImpl {
 
-	public String errormessage;// é”™è¯¯æ¶ˆæ¯
-	public final String SUCCESS_CODE = "1";// æˆåŠŸä»£ç 
-	public final String FAIL_CODE = "0";// å¤±è´¥ä»£ç 
+	public String errormessage;// ´íÎóÏûÏ¢
+	public final String SUCCESS_CODE = "1";// ³É¹¦´úÂë
+	public final String FAIL_CODE = "0";// Ê§°Ü´úÂë
 
 	public String getErrormessage() {
 		return errormessage;
@@ -43,18 +43,18 @@ public class BaseActionImpl {
 		this.errormessage = errormessage;
 	}
 
-	// åˆå§‹åŒ–åˆ†é¡µé¡µé¢
+	// ³õÊ¼»¯·ÖÒ³Ò³Ãæ
 	public Integer initPage(Integer page) {
 		return page == null ? 1 : page;
 	}
 
-	// åˆå§‹åŒ–åˆ†é¡µå¤§å°
+	// ³õÊ¼»¯·ÖÒ³´óĞ¡
 	public Integer initRows(Integer rows) {
 		return rows == null ? 10 : rows;
 	}
 
 	/**
-	 * åˆå§‹åŒ–æ—¥æœŸæ ¼å¼/å®¢æˆ·ä¿¡æ¯æ ¡éªŒ
+	 * ³õÊ¼»¯ÈÕÆÚ¸ñÊ½/¿Í»§ĞÅÏ¢Ğ£Ñé
 	 * 
 	 * @param binder
 	 */
@@ -65,7 +65,7 @@ public class BaseActionImpl {
 	}
 
 	/**
-	 * MVCå¼‚å¸¸å¤„ç†
+	 * MVCÒì³£´¦Àí
 	 * 
 	 * @param e
 	 * @return
@@ -75,37 +75,37 @@ public class BaseActionImpl {
 		ModelAndView mav = new ModelAndView("/common/Message");
 		String message = "";
 		if (e instanceof BindException) {
-			message = "æ•°æ®å­—æ®µä¸åˆæ³•!BindException";
+			message = "Êı¾İ×Ö¶Î²»ºÏ·¨!BindException";
 			mav.addObject(message);
 			return mav;
 		}
 
 		if (e instanceof NumberFormatException) {
-			message = "æ•°å­—ç±»å‹è½¬æ¢å¼‚å¸¸!NumberFormatException";
+			message = "Êı×ÖÀàĞÍ×ª»»Òì³£!NumberFormatException";
 			mav.addObject(message);
 			return mav;
 		}
 
 		if (e instanceof TypeMismatchException) {
-			message = "å­—ç¬¦ä¸²ç±»å‹è½¬æ¢ä¸ºæ•°å­—ç±»å‹é”™è¯¯!TypeMismatchException";
+			message = "×Ö·û´®ÀàĞÍ×ª»»ÎªÊı×ÖÀàĞÍ´íÎó!TypeMismatchException";
 			mav.addObject(message);
 			return mav;
 		}
 
 		if (e instanceof MissingServletRequestParameterException) {
-			message = "å‰ç«¯è¯·æ±‚ç¼ºå°‘å‚æ•°!MissingServletRequestParameterException";
+			message = "Ç°¶ËÇëÇóÈ±ÉÙ²ÎÊı!MissingServletRequestParameterException";
 			mav.addObject(message);
 			return mav;
 		}
 
 		if (e instanceof SocketException) {
-			message = "å‰ç«¯é¡µé¢å·²ç»å…³é—­!SocketException";
+			message = "Ç°¶ËÒ³ÃæÒÑ¾­¹Ø±Õ!SocketException";
 			mav.addObject(message);
 			return mav;
 		}
 
 		if (e instanceof ClientAbortException) {
-			message = "å‰ç«¯é¡µé¢å·²ç»å…³é—­!SocketException";
+			message = "Ç°¶ËÒ³ÃæÒÑ¾­¹Ø±Õ!SocketException";
 			mav.addObject(message);
 			return mav;
 		}
@@ -120,7 +120,7 @@ public class BaseActionImpl {
 	}
 
 	/**
-	 * è·å–é”™è¯¯çš„åŸå› 
+	 * »ñÈ¡´íÎóµÄÔ­Òò
 	 * 
 	 * @param e
 	 * @return
@@ -137,21 +137,20 @@ public class BaseActionImpl {
 	}
 
 
-
 	/**
-	 * å°†jsonMapè½¬æ¢ä¸ºjsonå­—ç¬¦ä¸²
+	 * ½«jsonMap×ª»»Îªjson×Ö·û´®
 	 * 
 	 * @param jsonMap
-	 * @return jsonå­—ç¬¦ä¸²
+	 * @return json×Ö·û´®
 	 */
 	public String convertJson(Map<String, Object> jsonMap) {
 		return JSON.toJSONString(jsonMap);
 	}
 
 	/**
-	 * åˆ›å»ºæŒ‡å®šå¤§å°çš„Mapå¯¹è±¡
+	 * ´´½¨Ö¸¶¨´óĞ¡µÄMap¶ÔÏó
 	 * 
-	 * @param num mapå¤§å°
+	 * @param num map´óĞ¡
 	 * @return Map<String, Object>
 	 */
 	public Map<String, Object> createJsonMap(int num) {
@@ -159,7 +158,7 @@ public class BaseActionImpl {
 	}
 
 	/**
-	 * åˆ›å»ºé»˜è®¤å¤§å°çš„mapå¯¹è±¡
+	 * ´´½¨Ä¬ÈÏ´óĞ¡µÄmap¶ÔÏó
 	 * 
 	 * @return Map<String, Object>
 	 */
@@ -168,12 +167,12 @@ public class BaseActionImpl {
 	}
 
 	/**
-	 * ç”Ÿæˆæ–‡ä»¶å
+	 * Éú³ÉÎÄ¼şÃû
 	 * 
 	 * @param request
-	 * @param subDir å­æ–‡ä»¶å¤¹ä½ç½®
-	 * @param upload spring mvcçš„MultipartFile
-	 * @return ç”Ÿæˆæ–‡ä»¶å¤¹åä¿å­˜ï¼Œå¹¶è¿”å›æ–‡ä»¶çš„ç»å¯¹è·¯å¾„
+	 * @param subDir ×ÓÎÄ¼ş¼ĞÎ»ÖÃ
+	 * @param upload spring mvcµÄMultipartFile
+	 * @return Éú³ÉÎÄ¼ş¼Ğºó±£´æ£¬²¢·µ»ØÎÄ¼şµÄ¾ø¶ÔÂ·¾¶
 	 */
 	@SuppressWarnings("deprecation")
 	public String genFileName(HttpServletRequest request, String subDir, MultipartFile upload) {
@@ -184,8 +183,8 @@ public class BaseActionImpl {
 
 		String fileUri = "upload/" + subDir + "/" + DateUtils.formatDateAsyyyymmdd(dt) + "/";
 		String savePath = realPath + fileUri;
-		savePath = savePath.replace("\\", "/");// æ›¿æ¢è½¬ä¹‰å­—ç¬¦
-		FileUtils.recursiveDir(savePath);// é€’å½’åˆ›å»ºæ–‡ä»¶å¤¹
+		savePath = savePath.replace("\\", "/");// Ìæ»»×ªÒå×Ö·û
+		FileUtils.recursiveDir(savePath);// µİ¹é´´½¨ÎÄ¼ş¼Ğ
 		String fileName = DateUtils.formatTimeAshhmiss(dt) + suffix;
 		savePath += fileName;
 
@@ -193,20 +192,20 @@ public class BaseActionImpl {
 	}
 
 	/**
-	 * è¿”å›JSONçŠ¶æ€ç 
+	 * ·µ»ØJSON×´Ì¬Âë
 	 * 
-	 * @param e é”™è¯¯ä¿¡æ¯ï¼Œå¦‚æœä¸ºç©ºåˆ™è®¤ä¸ºå¤„ç†æˆåŠŸï¼Œå¦åˆ™ä¼šè¿”å›å‰ç«¯é”™è¯¯ä¿¡æ¯
-	 * @return jsonçŠ¶æ€Map<String, Object>
+	 * @param e ´íÎóĞÅÏ¢£¬Èç¹ûÎª¿ÕÔòÈÏÎª´¦Àí³É¹¦£¬·ñÔò»á·µ»ØÇ°¶Ë´íÎóĞÅÏ¢
+	 * @return json×´Ì¬Map<String, Object>
 	 */
 	public Map<String, Object> getJsonStatus(Exception e) {
 		Map<String, Object> jsonStatus = new HashMap<String, Object>(3);
 		if (e == null) {
-			// æ­£å¸¸ä»£ç 
+			// Õı³£´úÂë
 			jsonStatus.put("code", SUCCESS_CODE);
 			return jsonStatus;
 		}
 
-		// é”™è¯¯ä»£ç 
+		// ´íÎó´úÂë
 		jsonStatus.put("code", FAIL_CODE);
 		jsonStatus.put("message", getExceptionCause(e));
 
@@ -214,11 +213,11 @@ public class BaseActionImpl {
 	}
 
 	/**
-	 * è·å–JSONçŠ¶æ€ç ï¼Œæ­£å¸¸æƒ…å†µè¿”å›messageï¼Œé”™è¯¯æƒ…å†µè¿”å›é”™è¯¯æ¶ˆæ¯
+	 * »ñÈ¡JSON×´Ì¬Âë£¬Õı³£Çé¿ö·µ»Ømessage£¬´íÎóÇé¿ö·µ»Ø´íÎóÏûÏ¢
 	 * 
-	 * @param e å¼‚å¸¸ä¿¡æ¯ï¼Œä¸ºç©ºåˆ™è®¤ä¸ºæ­£å¸¸æ‰§è¡Œä»£ç ï¼Œå¦åˆ™è®¤ä¸ºæ‰§è¡Œå¤±è´¥
-	 * @param message è¿”å›æ¶ˆæ¯ï¼Œæ­£å¸¸æ‰§è¡Œè¿”å›messageï¼Œæ‰§è¡Œå¼‚å¸¸è¿”å›å¼‚å¸¸åŸå› 
-	 * @return jsonè¿”å›ä¿¡æ¯Map<String, Object>
+	 * @param e Òì³£ĞÅÏ¢£¬Îª¿ÕÔòÈÏÎªÕı³£Ö´ĞĞ´úÂë£¬·ñÔòÈÏÎªÖ´ĞĞÊ§°Ü
+	 * @param message ·µ»ØÏûÏ¢£¬Õı³£Ö´ĞĞ·µ»Ømessage£¬Ö´ĞĞÒì³£·µ»ØÒì³£Ô­Òò
+	 * @return json·µ»ØĞÅÏ¢Map<String, Object>
 	 */
 	public Map<String, Object> getJsonStatus(Exception e, String message) {
 		Map<String, Object> jsonStatus = new HashMap<String, Object>(3);

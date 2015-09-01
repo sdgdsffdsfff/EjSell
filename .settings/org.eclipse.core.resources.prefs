@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/web.xml=GBK
+encoding//src/com/ejsell/spring/applicationContext-common.xml=GBK
+encoding//src/com/ejsell/spring/applicationContext-entity.xml=GBK
+encoding//src/com/ejsell/spring/applicationContext-utils.xml=GBK
+encoding//src/com/ejsell/spring/springmvc-servlet.xml=GBK
+encoding//src/com/ejsell/store/entity/SellOut.hbm.xml=GBK
+encoding//src/com/ejsell/store/entity/SellReturn.hbm.xml=GBK
+encoding//src/com/ejsell/template/Template.hbm.xml=GBK
+encoding/<project>=GBK

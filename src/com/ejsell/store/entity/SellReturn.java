@@ -1,18 +1,19 @@
 package com.ejsell.store.entity;
 
 /**
- * é”€å”®é€€è´§
+ * ´úÏúÍË»õµ¥
  * 
- * @author é™ˆæ·
+ * @author ³Â½İ
  *
  */
 public class SellReturn {
+
 	private Long id;
-	private String model;// æ¬¾å·
-	private String color;// é¢œè‰²
-	private String size;// å°ºå¯¸
-	private int amount;// æ•°é‡
-	private double price;// å•ä»·
+	private String model;// ¿îºÅ
+	private String color;// ÑÕÉ«
+	private String size;// ³ßÂë
+	private int amount;// ÊıÁ¿
+	private double price;// µ¥¼Û
 
 	public Long getId() {
 		return id;

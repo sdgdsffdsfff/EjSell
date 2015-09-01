@@ -7,9 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 /**
- * åˆå§‹åŒ–åŠ è½½é¡¹ç›®çš„ä¿¡æ¯
+ * ³õÊ¼»¯¼ÓÔØÏîÄ¿µÄĞÅÏ¢
  * 
- * @author é™ˆæ·
+ * @author ³Â½İ
  *
  */
 @WebServlet("/InitProjectInfo")
@@ -21,7 +21,7 @@ public class InitProjectInfo extends HttpServlet {
 	}
 
 	/**
-	 * åˆå§‹åŒ–ä¿¡æ¯åˆ°Applicationä¸­
+	 * ³õÊ¼»¯ĞÅÏ¢µ½ApplicationÖĞ
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		Enumeration<String> parameterNames = config.getInitParameterNames();
@@ -30,12 +30,12 @@ public class InitProjectInfo extends HttpServlet {
 			this.initApplicaton(config, parameter);
 		}
 		
-		//åˆå§‹åŒ–ç½‘ç«™è®¿é—®æ¬¡æ•°
+		//³õÊ¼»¯ÍøÕ¾·ÃÎÊ´ÎÊı
 		config.getServletContext().setAttribute("visit_count", 1);
 	}
 
 	/**
-	 * å°†åˆå§‹åŒ–å‚æ•°ä¸­çš„ä¿¡æ¯å†™å…¥åˆ°Applicationä¸­
+	 * ½«³õÊ¼»¯²ÎÊıÖĞµÄĞÅÏ¢Ğ´Èëµ½ApplicationÖĞ
 	 * 
 	 * @param config
 	 * @param parameter

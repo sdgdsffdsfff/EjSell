@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 
-	<display-name>ไปฃ้”€ๅๆ็ณป็ป</display-name>
+	<display-name>ด๚ฯ๚ทึฮ๖ฯตอณ</display-name>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
@@ -64,11 +64,11 @@
 		</init-param>
 		<init-param>
 			<param-name>projectName</param-name>
-			<param-value>ไปฃ้”€ๅๆ็ณป็ป</param-value>
+			<param-value>ด๚ฯ๚ทึฮ๖ฯตอณ</param-value>
 		</init-param>
 		<init-param>
 			<param-name>teamName</param-name>
-			<param-value>้ฟๆฐ่ฝฏไปถๅทฅไฝๅฎค</param-value>
+			<param-value>ฐขฝÜศํผþนคื๗สา</param-value>
 		</init-param>
 		<load-on-startup>100</load-on-startup>
 	</servlet>

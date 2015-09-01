@@ -17,17 +17,17 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<!-- å¯¹webåŒ…ä¸­çš„æ‰€æœ‰ç±»è¿›è¡Œæ‰«æï¼Œä»¥å®ŒæˆBeanåˆ›å»ºå’Œè‡ªåŠ¨ä¾èµ–æ³¨å…¥çš„åŠŸèƒ½ -->
+	<!-- ¶Ôweb°üÖÐµÄËùÓÐÀà½øÐÐÉ¨Ãè£¬ÒÔÍê³ÉBean´´½¨ºÍ×Ô¶¯ÒÀÀµ×¢ÈëµÄ¹¦ÄÜ -->
 	<context:component-scan base-package="com.ejsell.**.action" />
 
-	<!-- æ”¯æŒspring3.0æ–°çš„mvcæ³¨è§£ -->
+	<!-- Ö§³Öspring3.0ÐÂµÄmvc×¢½â -->
 	<mvc:annotation-driven />
 
-	<!-- å¯åŠ¨Spring MVCçš„æ³¨è§£åŠŸèƒ½ï¼Œå®Œæˆè¯·æ±‚å’Œæ³¨è§£POJOçš„æ˜ å°„ -->
+	<!-- Æô¶¯Spring MVCµÄ×¢½â¹¦ÄÜ£¬Íê³ÉÇëÇóºÍ×¢½âPOJOµÄÓ³Éä -->
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
-	<!--å¯¹æ¨¡åž‹è§†å›¾åç§°çš„è§£æžï¼Œå³åœ¨æ¨¡åž‹è§†å›¾åç§°æ·»åŠ å‰åŽç¼€ -->
+	<!--¶ÔÄ£ÐÍÊÓÍ¼Ãû³ÆµÄ½âÎö£¬¼´ÔÚÄ£ÐÍÊÓÍ¼Ãû³ÆÌí¼ÓÇ°ºó×º -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -38,9 +38,9 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="utf-8" />
-		<!-- ä¸Šä¼ æ–‡ä»¶çš„æœ€å¤§å€¼ -->
+		<!-- ÉÏ´«ÎÄ¼þµÄ×î´óÖµ -->
 		<property name="maxUploadSize" value="10485760000" />
-		<!-- ç¼“å­˜å¤§å° -->
+		<!-- »º´æ´óÐ¡ -->
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
 

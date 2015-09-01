@@ -52,7 +52,7 @@ public class SellReturnAction extends BaseActionImpl implements BaseAction<SellR
 	}
 	
 	/**
-	 * æ•°æ®å¯¼å…¥é¡µ
+	 * µ¼Èë´úÏú»Ø»õÒ³Ãæ
 	 * 
 	 * @return
 	 */
