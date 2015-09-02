@@ -97,7 +97,7 @@ public class SellReturnAction extends BaseActionImpl implements BaseAction<SellR
 	 * @param response (不需要传入)
 	 */
 	@RequestMapping("/SellReturnAction/importSellReturn")
-	public ModelAndView importSellOut(@RequestParam("upload") MultipartFile upload, HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView importSellReturn(@RequestParam("upload") MultipartFile upload, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("common/Message");
 		if (upload.getSize() <= 0) {
 			mav.addObject("message", "上传文件不能为空!");
@@ -109,7 +109,7 @@ public class SellReturnAction extends BaseActionImpl implements BaseAction<SellR
 			return mav;
 		}
 
-		String saveFileName = genFileName(request, "SellOut", upload);
+		String saveFileName = genFileName(request, "SellReturn", upload);
 		File saveFile = new File(saveFileName);
 		try {
 			upload.transferTo(saveFile);// 保存文件
