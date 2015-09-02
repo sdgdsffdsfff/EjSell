@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 
-	<display-name>´úÏú·ÖÎöÏµÍ³</display-name>
+	<display-name>ä»£é”€åˆ†æç³»ç»Ÿ</display-name>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
@@ -18,7 +18,6 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath*:com/ejsell/spring/applicationContext-*.xml,
-			classpath*:com/ejsell/*/aop/*-Aop.xml
 		</param-value>
 	</context-param>
 
@@ -64,11 +63,11 @@
 		</init-param>
 		<init-param>
 			<param-name>projectName</param-name>
-			<param-value>´úÏú·ÖÎöÏµÍ³</param-value>
+			<param-value>ä»£é”€åˆ†æç³»ç»Ÿ</param-value>
 		</init-param>
 		<init-param>
 			<param-name>teamName</param-name>
-			<param-value>°¢½ÜÈí¼ş¹¤×÷ÊÒ</param-value>
+			<param-value>é˜¿æ°è½¯ä»¶å·¥ä½œå®¤</param-value>
 		</init-param>
 		<load-on-startup>100</load-on-startup>
 	</servlet>

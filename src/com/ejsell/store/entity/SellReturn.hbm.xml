@@ -1,38 +1,62 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC 
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC 
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.ejsell.store.entity">
 	<class name="SellReturn" table="SELL_RETURN">
-		<comment>�����˻�</comment>
+		<comment>销售退货</comment>
 		<id name="id" column="SELL_RETURN_ID">
 			<generator class="increment" />
 		</id>
 
 		<property name="model">
-			<column name="MODEL" length="50" not-null="true" >
-				<comment>���</comment>
+			<column name="MODEL" length="50" not-null="true">
+				<comment>款号</comment>
 			</column>
 		</property>
 		<property name="color">
 			<column name="COLOR" length="20" not-null="true">
-				<comment>��ɫ</comment>
+				<comment>颜色</comment>
 			</column>
 		</property>
 		<property name="size">
 			<column name="SIZE" length="10" not-null="true">
-				<comment>�ߴ�</comment>
+				<comment>尺寸</comment>
 			</column>
 		</property>
 		<property name="amount">
 			<column name="AMOUNT" not-null="true">
-				<comment>����</comment>
-			</column>
-		</property>
-		<property name="price">
-			<column name="PRICE" not-null="true" precision="1">
-				<comment>����</comment>
+				<comment>数量</comment>
 			</column>
 		</property>
 	</class>
+	
+	<!-- 查询销售退货商品存在销售出货单中的数据 -->
+	<sql-query name="SellReturn.query_exists_sell_out">
+		<![CDATA[
+		select MODEL,COLOR,SIZE,SUM(AMOUNT) AS AMOUNT from (
+		select * from sell_return ser
+		where exists (
+		select 1 from sell_out seo
+		where ser.MODEL=seo.MODEL
+		and ser.COLOR=seo.COLOR
+		and ser.SIZE=seo.SIZE) ) ser_main
+		group by MODEL,COLOR,SIZE
+		order by MODEL,COLOR,SIZE
+		]]>
+	</sql-query>
+	
+	<!-- 查询销售退货商品不存在销售出货单中的数据 -->
+	<sql-query name="SellReturn.query_not_exists_sell_out">
+		<![CDATA[
+		select MODEL,COLOR,SIZE,SUM(AMOUNT) AS AMOUNT from (
+		select * from sell_return ser
+		where  not exists (
+		select 1 from sell_out seo
+		where ser.MODEL=seo.MODEL
+		and ser.COLOR=seo.COLOR
+		and ser.SIZE=seo.SIZE) ) ser_main
+		group by MODEL,COLOR,SIZE
+		order by MODEL,COLOR,SIZE
+		]]>
+	</sql-query>
 </hibernate-mapping>

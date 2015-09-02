@@ -15,59 +15,60 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/ejsell?characterEncoding=GBK" />
+		<property name="jdbcUrl"
+			value="jdbc:mysql://127.0.0.1:3306/ejsell?characterEncoding=UTF-8" />
 		<property name="user" value="root" />
 		<property name="password" value="root" />
 
-		<!-- Á¬½Ó³ØÖÐ±£ÁôµÄ×îÐ¡Á¬½ÓÊý -->
+		<!-- è¿žæŽ¥æ± ä¸­ä¿ç•™çš„æœ€å°è¿žæŽ¥æ•° -->
 		<property name="minPoolSize" value="5" />
 
-		<!-- Á¬½Ó³ØÖÐ±£ÁôµÄ×î´óÁ¬½ÓÊý¡£Default: 15 -->
+		<!-- è¿žæŽ¥æ± ä¸­ä¿ç•™çš„æœ€å¤§è¿žæŽ¥æ•°ã€‚Default: 15 -->
 		<property name="maxPoolSize" value="50" />
 
-		<!-- ³õÊ¼»¯Ê±»ñÈ¡µÄÁ¬½ÓÊý£¬È¡ÖµÓ¦ÔÚminPoolSizeÓëmaxPoolSizeÖ®¼ä¡£Default: 3 -->
+		<!-- åˆå§‹åŒ–æ—¶èŽ·å–çš„è¿žæŽ¥æ•°ï¼Œå–å€¼åº”åœ¨minPoolSizeä¸ŽmaxPoolSizeä¹‹é—´ã€‚Default: 3 -->
 		<property name="initialPoolSize" value="5" />
 
-		<!-- ×î´ó¿ÕÏÐÊ±¼ä,60ÃëÄÚÎ´Ê¹ÓÃÔòÁ¬½Ó±»¶ªÆú¡£ÈôÎª0ÔòÓÀ²»¶ªÆú¡£Default: 0 -->
+		<!-- æœ€å¤§ç©ºé—²æ—¶é—´,60ç§’å†…æœªä½¿ç”¨åˆ™è¿žæŽ¥è¢«ä¸¢å¼ƒã€‚è‹¥ä¸º0åˆ™æ°¸ä¸ä¸¢å¼ƒã€‚Default: 0 -->
 		<property name="maxIdleTime" value="60" />
 
-		<!-- µ±Á¬½Ó³ØÖÐµÄÁ¬½ÓºÄ¾¡µÄÊ±ºòc3p0Ò»´ÎÍ¬Ê±»ñÈ¡µÄÁ¬½ÓÊý¡£Default: 3 -->
+		<!-- å½“è¿žæŽ¥æ± ä¸­çš„è¿žæŽ¥è€—å°½çš„æ—¶å€™c3p0ä¸€æ¬¡åŒæ—¶èŽ·å–çš„è¿žæŽ¥æ•°ã€‚Default: 3 -->
 		<property name="acquireIncrement" value="5" />
 
-		<!-- JDBCµÄ±ê×¼²ÎÊý£¬ÓÃÒÔ¿ØÖÆÊý¾ÝÔ´ÄÚ¼ÓÔØµÄPreparedStatementsÊýÁ¿¡£µ«ÓÉÓÚÔ¤»º´æµÄstatements ÊôÓÚµ¥¸öconnection¶ø²»ÊÇÕû¸öÁ¬½Ó³Ø¡£ËùÒÔÉèÖÃÕâ¸ö²ÎÊýÐèÒª¿¼ÂÇµ½¶à·½ÃæµÄÒòËØ¡£ 
-			Èç¹ûmaxStatementsÓëmaxStatementsPerConnection¾ùÎª0£¬Ôò»º´æ±»¹Ø±Õ¡£Default: 0 -->
+		<!-- JDBCçš„æ ‡å‡†å‚æ•°ï¼Œç”¨ä»¥æŽ§åˆ¶æ•°æ®æºå†…åŠ è½½çš„PreparedStatementsæ•°é‡ã€‚ä½†ç”±äºŽé¢„ç¼“å­˜çš„statements å±žäºŽå•ä¸ªconnectionè€Œä¸æ˜¯æ•´ä¸ªè¿žæŽ¥æ± ã€‚æ‰€ä»¥è®¾ç½®è¿™ä¸ªå‚æ•°éœ€è¦è€ƒè™‘åˆ°å¤šæ–¹é¢çš„å› ç´ ã€‚ 
+			å¦‚æžœmaxStatementsä¸ŽmaxStatementsPerConnectionå‡ä¸º0ï¼Œåˆ™ç¼“å­˜è¢«å…³é—­ã€‚Default: 0 -->
 		<property name="maxStatements" value="0" />
 		<property name="maxStatementsPerConnection" value="0" />
 
-		<!-- Ã¿60Ãë¼ì²éËùÓÐÁ¬½Ó³ØÖÐµÄ¿ÕÏÐÁ¬½Ó¡£Default: 0 -->
+		<!-- æ¯60ç§’æ£€æŸ¥æ‰€æœ‰è¿žæŽ¥æ± ä¸­çš„ç©ºé—²è¿žæŽ¥ã€‚Default: 0 -->
 		<property name="idleConnectionTestPeriod" value="30" />
 
-		<!-- ¶¨ÒåÔÚ´ÓÊý¾Ý¿â»ñÈ¡ÐÂÁ¬½ÓÊ§°ÜºóÖØ¸´³¢ÊÔµÄ´ÎÊý¡£Default: 30 -->
+		<!-- å®šä¹‰åœ¨ä»Žæ•°æ®åº“èŽ·å–æ–°è¿žæŽ¥å¤±è´¥åŽé‡å¤å°è¯•çš„æ¬¡æ•°ã€‚Default: 30 -->
 		<property name="acquireRetryAttempts" value="30" />
 
-		<!-- »ñÈ¡Á¬½ÓÊ§°Ü½«»áÒýÆðËùÓÐµÈ´ýÁ¬½Ó³ØÀ´»ñÈ¡Á¬½ÓµÄÏß³ÌÅ×³öÒì³£¡£µ«ÊÇÊý¾ÝÔ´ÈÔÓÐÐ§ ±£Áô£¬²¢ÔÚÏÂ´Îµ÷ÓÃgetConnection()µÄÊ±ºò¼ÌÐø³¢ÊÔ»ñÈ¡Á¬½Ó¡£Èç¹ûÉèÎªtrue£¬ÄÇÃ´ÔÚ³¢ÊÔ 
-			»ñÈ¡Á¬½ÓÊ§°Üºó¸ÃÊý¾ÝÔ´½«ÉêÃ÷ÒÑ¶Ï¿ª²¢ÓÀ¾Ã¹Ø±Õ¡£Default: false -->
+		<!-- èŽ·å–è¿žæŽ¥å¤±è´¥å°†ä¼šå¼•èµ·æ‰€æœ‰ç­‰å¾…è¿žæŽ¥æ± æ¥èŽ·å–è¿žæŽ¥çš„çº¿ç¨‹æŠ›å‡ºå¼‚å¸¸ã€‚ä½†æ˜¯æ•°æ®æºä»æœ‰æ•ˆ ä¿ç•™ï¼Œå¹¶åœ¨ä¸‹æ¬¡è°ƒç”¨getConnection()çš„æ—¶å€™ç»§ç»­å°è¯•èŽ·å–è¿žæŽ¥ã€‚å¦‚æžœè®¾ä¸ºtrueï¼Œé‚£ä¹ˆåœ¨å°è¯• 
+			èŽ·å–è¿žæŽ¥å¤±è´¥åŽè¯¥æ•°æ®æºå°†ç”³æ˜Žå·²æ–­å¼€å¹¶æ°¸ä¹…å…³é—­ã€‚Default: false -->
 		<property name="breakAfterAcquireFailure" value="true" />
 
 	</bean>
 
-	<!-- ¶Ôweb°üÖÐµÄËùÓÐÀà½øÐÐÉ¨Ãè£¬ÒÔÍê³ÉBean´´½¨ºÍ×Ô¶¯ÒÀÀµ×¢ÈëµÄ¹¦ÄÜ -->
+	<!-- å¯¹webåŒ…ä¸­çš„æ‰€æœ‰ç±»è¿›è¡Œæ‰«æï¼Œä»¥å®ŒæˆBeanåˆ›å»ºå’Œè‡ªåŠ¨ä¾èµ–æ³¨å…¥çš„åŠŸèƒ½ -->
 	<context:component-scan base-package="com.persistent.impl" />
 	<context:component-scan base-package="com.ejsell.*.service" />
 	<context:component-scan base-package="com.ejsell.*.aop" />
 	<context:component-scan base-package="com.ejsell.sys.securit" />
 
-	<!-- ¶¯Ì¬´úÀíÓÃCGLIB -->
+	<!-- åŠ¨æ€ä»£ç†ç”¨CGLIB -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 
-	<!-- ¹«¹²ÊÂÎñBean -->
+	<!-- å…¬å…±äº‹åŠ¡Bean -->
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 
-	<!-- ÅäÖÃÊÂÎñµÄ´«²¥ÌØÐÔ -->
+	<!-- é…ç½®äº‹åŠ¡çš„ä¼ æ’­ç‰¹æ€§ -->
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" />
@@ -77,7 +78,7 @@
 		</tx:attributes>
 	</tx:advice>
 
-	<!-- ¶¨ÒåÊÂÎñÍ¨ÖªÆ÷ -->
+	<!-- å®šä¹‰äº‹åŠ¡é€šçŸ¥å™¨ -->
 	<aop:config>
 		<aop:pointcut id="crudPoint"
 			expression="execution(* com.persistent.impl.*.*(..)) || execution(* com.ejsell.**.service.*.*(..))" />

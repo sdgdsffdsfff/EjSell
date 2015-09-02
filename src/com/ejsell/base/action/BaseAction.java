@@ -3,67 +3,67 @@ package com.ejsell.base.action;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * »ù´¡Action½Ó¿Ú
+ * åŸºç¡€Actionæ¥å£
  * 
- * @author ³Â½İ
+ * @author é™ˆæ·
  *
  * @param <T>
  */
 public interface BaseAction<T> {
 
 	/**
-	 * Ìí¼Ó·½·¨
+	 * æ·»åŠ æ–¹æ³•
 	 * 
-	 * @param t ÊµÌåÀà
-	 * @return SpringMVCÄ£ĞÍÊÓÍ¼
+	 * @param t å®ä½“ç±»
+	 * @return SpringMVCæ¨¡å‹è§†å›¾
 	 */
 	public String add(T t);
 
 	/**
-	 * É¾³ı·½·¨
+	 * åˆ é™¤æ–¹æ³•
 	 * 
-	 * @param id ÊµÌåid
-	 * @return SpringMVCÄ£ĞÍÊÓÍ¼
+	 * @param id å®ä½“id
+	 * @return SpringMVCæ¨¡å‹è§†å›¾
 	 */
 	public String del(Long id);
 
 	/**
-	 * ĞŞ¸Ä·½·¨
+	 * ä¿®æ”¹æ–¹æ³•
 	 * 
-	 * @param t ÊµÌåÀà
-	 * @return SpringMVCÄ£ĞÍÊÓÍ¼
+	 * @param t å®ä½“ç±»
+	 * @return SpringMVCæ¨¡å‹è§†å›¾
 	 */
 	public String edit(T t);
 
 	/**
-	 * Ìí¼ÓÒ³Ãæ
+	 * æ·»åŠ é¡µé¢
 	 * 
-	 * @return SpringMVCÄ£ĞÍÊÓÍ¼
+	 * @return SpringMVCæ¨¡å‹è§†å›¾
 	 */
 	public ModelAndView addPage();
 
 	/**
-	 * ĞŞ¸ÄÒ³Ãæ
+	 * ä¿®æ”¹é¡µé¢
 	 * 
-	 * @param id ÊµÌåÀàid
-	 * @return SpringMVCÄ£ĞÍÊÓÍ¼
+	 * @param id å®ä½“ç±»id
+	 * @return SpringMVCæ¨¡å‹è§†å›¾
 	 */
 	public ModelAndView editPage(Long id);
 
 	/**
-	 * JsonÁĞ±íÒ³Ãæ
+	 * Jsonåˆ—è¡¨é¡µé¢
 	 * 
-	 * @return jsonÁĞ±íÒ³
+	 * @return jsonåˆ—è¡¨é¡µ
 	 */
 	public ModelAndView jsonListPage();
 
 	/**
-	 * »ñÈ¡jsonĞÅÏ¢
+	 * è·å–jsonä¿¡æ¯
 	 * 
-	 * @param sqlwhere sql²éÑ¯Ìõ¼ş
-	 * @param page ·ÖÒ³Ò³ºÅ(Ä¬ÈÏ1)
-	 * @param rows ·ÖÒ³´óĞ¡(Ä¬ÈÏ10)
-	 * @return jsonÀàĞÍÊı¾İ{rows:¾ßÌåĞÅÏ¢,total:×Ü¼ÇÂ¼Êı}
+	 * @param sqlwhere sqlæŸ¥è¯¢æ¡ä»¶
+	 * @param page åˆ†é¡µé¡µå·(é»˜è®¤1)
+	 * @param rows åˆ†é¡µå¤§å°(é»˜è®¤10)
+	 * @return jsonç±»å‹æ•°æ®{rows:å…·ä½“ä¿¡æ¯,total:æ€»è®°å½•æ•°}
 	 */
 	public String getJsonList(String sqlwhere, Integer page, Integer rows);
 

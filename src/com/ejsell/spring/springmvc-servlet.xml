@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc" 
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util" 
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd 
-	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
-	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"> -->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -17,30 +10,30 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<!-- ¶Ôweb°üÖÐµÄËùÓÐÀà½øÐÐÉ¨Ãè£¬ÒÔÍê³ÉBean´´½¨ºÍ×Ô¶¯ÒÀÀµ×¢ÈëµÄ¹¦ÄÜ -->
+	<!-- å¯¹webåŒ…ä¸­çš„æ‰€æœ‰ç±»è¿›è¡Œæ‰«æï¼Œä»¥å®ŒæˆBeanåˆ›å»ºå’Œè‡ªåŠ¨ä¾èµ–æ³¨å…¥çš„åŠŸèƒ½ -->
 	<context:component-scan base-package="com.ejsell.**.action" />
 
-	<!-- Ö§³Öspring3.0ÐÂµÄmvc×¢½â -->
+	<!-- æ”¯æŒspring3.0æ–°çš„mvcæ³¨è§£ -->
 	<mvc:annotation-driven />
 
-	<!-- Æô¶¯Spring MVCµÄ×¢½â¹¦ÄÜ£¬Íê³ÉÇëÇóºÍ×¢½âPOJOµÄÓ³Éä -->
+	<!-- å¯åŠ¨Spring MVCçš„æ³¨è§£åŠŸèƒ½ï¼Œå®Œæˆè¯·æ±‚å’Œæ³¨è§£POJOçš„æ˜ å°„ -->
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
-	<!--¶ÔÄ£ÐÍÊÓÍ¼Ãû³ÆµÄ½âÎö£¬¼´ÔÚÄ£ÐÍÊÓÍ¼Ãû³ÆÌí¼ÓÇ°ºó×º -->
+	<!--å¯¹æ¨¡åž‹è§†å›¾åç§°çš„è§£æžï¼Œå³åœ¨æ¨¡åž‹è§†å›¾åç§°æ·»åŠ å‰åŽç¼€ -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/jsp/" />
+		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="defaultEncoding" value="utf-8" />
-		<!-- ÉÏ´«ÎÄ¼þµÄ×î´óÖµ -->
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- ä¸Šä¼ æ–‡ä»¶çš„æœ€å¤§å€¼ -->
 		<property name="maxUploadSize" value="10485760000" />
-		<!-- »º´æ´óÐ¡ -->
+		<!-- ç¼“å­˜å¤§å° -->
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
 

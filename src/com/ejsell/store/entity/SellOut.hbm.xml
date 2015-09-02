@@ -1,37 +1,31 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC 
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC 
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.ejsell.store.entity">
 	<class name="SellOut" table="SELL_OUT">
-		<comment>ÏúÊÛ·¢»õ</comment>
+		<comment>é”€å”®å‘è´§</comment>
 		<id name="id" column="SELL_OUT_ID">
 			<generator class="increment" />
 		</id>
 
 		<property name="model">
-			<column name="MODEL" length="50" not-null="true" >
-				<comment>¿îºÅ</comment>
+			<column name="MODEL" length="50" not-null="true">
+				<comment>æ¬¾å·</comment>
 			</column>
 		</property>
 		<property name="color">
 			<column name="COLOR" length="20" not-null="true">
-				<comment>ÑÕÉ«</comment>
+				<comment>é¢œè‰²</comment>
 			</column>
 		</property>
 		<property name="size">
 			<column name="SIZE" length="10" not-null="true">
-				<comment>³ß´ç</comment>
+				<comment>å°ºå¯¸</comment>
 			</column>
 		</property>
 		<property name="amount">
 			<column name="AMOUNT" not-null="true">
-				<comment>ÊýÁ¿</comment>
-			</column>
-		</property>
-		<property name="price">
-			<column name="PRICE" not-null="true" precision="1">
-				<comment>µ¥¼Û</comment>
+				<comment>æ•°é‡</comment>
 			</column>
 		</property>
 	</class>

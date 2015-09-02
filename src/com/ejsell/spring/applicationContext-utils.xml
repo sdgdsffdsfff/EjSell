@@ -12,7 +12,6 @@
      http://www.springframework.org/schema/aop
      http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<!-- md5¼ÓÃÜ¹¤¾ß -->
 	<bean id="encrypt" class="com.chenjie.util.securit.MD5Encrypt" />
 
 </beans>
