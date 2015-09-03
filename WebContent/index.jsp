@@ -19,9 +19,9 @@
 			<br />
 			<br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" href="SellReturnAction/importSellReturnPage.do" >销售退货导入</a>
 			<br />
-			<br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-save'" href="SellReturnAction/downSellReturn.do?isExists=1">导出对比数据1</a>
+			<br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-save'" href="SellReturnAction/downSellReturn.do?isExists=1">导出回货数据</a>
 			<br />
-			<br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-save'" href="SellReturnAction/downSellReturn.do?isExists=0">导出对比数据2</a>
+			<br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-save'" href="SellReturnAction/downSellReturn.do?isExists=0">导出代卖数据</a>
 			<br />
 			<br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="SellOutAction/clearData.do">清空销售数据</a>
 		</h2>

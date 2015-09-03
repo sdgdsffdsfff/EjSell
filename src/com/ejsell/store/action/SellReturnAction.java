@@ -153,22 +153,30 @@ public class SellReturnAction extends BaseActionImpl implements BaseAction<SellR
 		List<String> titles = new ArrayList<String>(9);
 		titles.add("商品编号");
 		titles.add("颜色");
-		titles.add("尺码");
-		titles.add("数量");
+		titles.add("尺码34");
+		titles.add("尺码36");
+		titles.add("尺码38");
+		titles.add("尺码40");
+		titles.add("尺码42");
+		titles.add("尺码M");
 		List<String> fields = new ArrayList<String>(9);
 		fields.add("MODEL");
 		fields.add("COLOR");
-		fields.add("SIZE");
-		fields.add("AMOUNT");
+		fields.add("SIZE34");
+		fields.add("SIZE36");
+		fields.add("SIZE38");
+		fields.add("SIZE40");
+		fields.add("SIZE42");
+		fields.add("SIZEM");
 
 		String nameSql="";
 		String fileName="";
 		if(isExists==1){
-			nameSql="SellReturn.query_exists_sell_out";
-			fileName="EJSELL_EXISTS("+DateUtils.formatDateAsyyyymmdd(new Date())+").xls";
+			nameSql="SellReturn.query_exists_sell_out_size_queue";
+			fileName="EJSELL_HHSJ("+DateUtils.formatDateAsyyyymmdd(new Date())+").xls";
 		}else{
-			nameSql="SellReturn.query_not_exists_sell_out";
-			fileName="EJSELL_NOT_EXISTS("+DateUtils.formatDateAsyyyymmdd(new Date())+").xls";
+			nameSql="SellReturn.query_not_exists_sell_out_size_queue";
+			fileName="EJSELL_DMSJ("+DateUtils.formatDateAsyyyymmdd(new Date())+").xls";
 		}
 		
 		response.setContentType("text/html;charset=utf-8");

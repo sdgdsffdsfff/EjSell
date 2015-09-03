@@ -44,6 +44,35 @@
 		order by MODEL,COLOR,SIZE
 		]]>
 	</sql-query>
+	<!-- 查询销售退货商品存在销售出货单中的数据(尺码横排形式) -->
+	<sql-query name="SellReturn.query_exists_sell_out_size_queue">
+		<![CDATA[
+		select MODEL,COLOR,SUM(SIZE34) AS SIZE34,
+		SUM(SIZE36) AS SIZE36,SUM(SIZE38) AS SIZE38,
+		SUM(SIZE40) AS SIZE40,SUM(SIZE42) AS SIZE42,SUM(SIZEM) AS SIZEM from( 
+		select MODEL,COLOR,
+		CASE SIZE WHEN '34' THEN AMOUNT ELSE 0 END AS SIZE34,
+		CASE SIZE WHEN '36' THEN AMOUNT ELSE 0 END AS SIZE36,
+		CASE SIZE WHEN '38' THEN AMOUNT ELSE 0 END AS SIZE38,
+		CASE SIZE WHEN '40' THEN AMOUNT ELSE 0 END AS SIZE40,
+		CASE SIZE WHEN '42' THEN AMOUNT ELSE 0 END AS SIZE42,
+		CASE SIZE WHEN 'M' THEN AMOUNT ELSE 0 END AS SIZEM 
+		FROM ( 
+		select MODEL,COLOR,SIZE,SUM(AMOUNT) AS AMOUNT from ( 
+		select * from sell_return ser 
+		where exists ( 
+		select 1 from sell_out seo 
+		where ser.MODEL=seo.MODEL 
+		and ser.COLOR=seo.COLOR 
+		and ser.SIZE=seo.SIZE) ) ser_main 
+		group by MODEL,COLOR,SIZE 
+		order by MODEL,COLOR,SIZE 
+		) ser_main1 
+		) ser_main2 
+		group by MODEL,COLOR 
+		order by MODEL,COLOR 
+		]]>
+	</sql-query>
 	
 	<!-- 查询销售退货商品不存在销售出货单中的数据 -->
 	<sql-query name="SellReturn.query_not_exists_sell_out">
@@ -57,6 +86,36 @@
 		and ser.SIZE=seo.SIZE) ) ser_main
 		group by MODEL,COLOR,SIZE
 		order by MODEL,COLOR,SIZE
+		]]>
+	</sql-query>
+	
+	<!-- 查询销售退货商品不存在销售出货单中的数据(尺码横排形式) -->
+	<sql-query name="SellReturn.query_not_exists_sell_out_size_queue">
+		<![CDATA[
+		select MODEL,COLOR,SUM(SIZE34) AS SIZE34,
+		SUM(SIZE36) AS SIZE36,SUM(SIZE38) AS SIZE38,
+		SUM(SIZE40) AS SIZE40,SUM(SIZE42) AS SIZE42,SUM(SIZEM) AS SIZEM from( 
+		select MODEL,COLOR,
+		CASE SIZE WHEN '34' THEN AMOUNT ELSE 0 END AS SIZE34,
+		CASE SIZE WHEN '36' THEN AMOUNT ELSE 0 END AS SIZE36,
+		CASE SIZE WHEN '38' THEN AMOUNT ELSE 0 END AS SIZE38,
+		CASE SIZE WHEN '40' THEN AMOUNT ELSE 0 END AS SIZE40,
+		CASE SIZE WHEN '42' THEN AMOUNT ELSE 0 END AS SIZE42,
+		CASE SIZE WHEN 'M' THEN AMOUNT ELSE 0 END AS SIZEM 
+		FROM ( 
+		select MODEL,COLOR,SIZE,SUM(AMOUNT) AS AMOUNT from ( 
+		select * from sell_return ser 
+		where not exists ( 
+		select 1 from sell_out seo 
+		where ser.MODEL=seo.MODEL 
+		and ser.COLOR=seo.COLOR 
+		and ser.SIZE=seo.SIZE) ) ser_main 
+		group by MODEL,COLOR,SIZE 
+		order by MODEL,COLOR,SIZE 
+		) ser_main1 
+		) ser_main2 
+		group by MODEL,COLOR 
+		order by MODEL,COLOR 
 		]]>
 	</sql-query>
 </hibernate-mapping>
