@@ -18,12 +18,15 @@ import com.ejsell.base.action.BaseAction;
 import com.ejsell.base.action.BaseActionImpl;
 import com.ejsell.store.entity.SellOut;
 import com.ejsell.store.service.SellOutService;
+import com.ejsell.store.service.SysConfigService;
 
 @Controller
 public class SellOutAction extends BaseActionImpl implements BaseAction<SellOut> {
 	Logger logger = Logger.getLogger(this.getClass());
 	@Autowired
 	private SellOutService sellOutService;
+	@Autowired
+	private SysConfigService sysConfigService;
 
 	@Override
 	public String add(SellOut sellOut) {
@@ -103,7 +106,7 @@ public class SellOutAction extends BaseActionImpl implements BaseAction<SellOut>
 		File saveFile = new File(saveFileName);
 		try {
 			upload.transferTo(saveFile);// 保存文件
-			List<SellOut> listSellOut = readSellOut(saveFileName);
+			List<SellOut> listSellOut = readSellOutByConfig(saveFileName, sysConfigService.getListSizeName(), sysConfigService.getSizeJumpLine());//(saveFileName);
 
 			int total_amount = 0;// 总件数
 			for (SellOut sellOut : listSellOut) {

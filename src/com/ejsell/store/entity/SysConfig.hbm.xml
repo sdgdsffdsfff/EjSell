@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ejsell.store.entity">
+	<class name="SysConfig" table="SYS_CONFIG">
+		<comment>系统配置</comment>
+		<id name="id" column="SYS_CONFIG_ID">
+			<generator class="increment" />
+		</id>
+
+		<property name="name">
+			<column name="NAME" not-null="true" length="50">
+				<comment>名称</comment>
+			</column>
+		</property>
+		<property name="val">
+			<column name="VAL" not-null="true" length="50">
+				<comment>值</comment>
+			</column>
+		</property>
+
+	</class>
+</hibernate-mapping>

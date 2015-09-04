@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.chenjie.util.FileUtils" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,6 +25,16 @@
 			<br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-save'" href="SellReturnAction/downSellReturn.do?isExists=0">导出代卖数据</a>
 			<br />
 			<br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="SellOutAction/clearData.do">清空销售数据</a>
+			<%
+				String installFilePath = request.getRealPath("/") + "install.inf";
+				installFilePath.replace("\\", "/");
+				if (FileUtils.fileExists(installFilePath)) {
+			%>
+			<br /> <br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-tip'" href="SysConfigAction/installPage.do">初始化安装</a>
+			<%
+				}
+			%>
+
 		</h2>
 		</p>
 	</div>

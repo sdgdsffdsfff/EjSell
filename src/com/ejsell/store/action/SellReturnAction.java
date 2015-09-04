@@ -26,6 +26,7 @@ import com.ejsell.base.action.BaseActionImpl;
 import com.ejsell.store.entity.SellOut;
 import com.ejsell.store.entity.SellReturn;
 import com.ejsell.store.service.SellReturnService;
+import com.ejsell.store.service.SysConfigService;
 
 @Controller
 public class SellReturnAction extends BaseActionImpl implements BaseAction<SellReturn> {
@@ -34,6 +35,8 @@ public class SellReturnAction extends BaseActionImpl implements BaseAction<SellR
 
 	@Autowired
 	private SellReturnService sellReturnService;
+	@Autowired
+	private SysConfigService sysConfigService;
 
 	@Override
 	public String add(SellReturn sellReturn) {
@@ -113,7 +116,7 @@ public class SellReturnAction extends BaseActionImpl implements BaseAction<SellR
 		File saveFile = new File(saveFileName);
 		try {
 			upload.transferTo(saveFile);// 保存文件
-			List<SellOut> listSellOut = readSellOut(saveFileName);
+			List<SellOut> listSellOut = readSellOutByConfig(saveFileName, sysConfigService.getListSizeName(), sysConfigService.getSizeJumpLine());// (saveFileName);
 			int total_amount = 0;// 总件数
 			// 销售出货单转换成销售退货单
 			List<SellReturn> listSellReturn = new ArrayList<SellReturn>();
@@ -136,54 +139,44 @@ public class SellReturnAction extends BaseActionImpl implements BaseAction<SellR
 
 		return mav;
 	}
-	
+
 	/**
 	 * 导出数据
+	 * 
 	 * @param isExists 是否存在，1存在销售出货单中，0不存在销售出货单中
 	 * @param request
 	 * @param response
-	 * @return 
+	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping("/SellReturnAction/downSellReturn")
-	public ModelAndView downSellReturn(int isExists,HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+	public ModelAndView downSellReturn(int isExists, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		List<String> listSizeName = sysConfigService.getListSizeName();
 		ExcelUtils excel = new ExcelUtils();
 		List<String> titles = new ArrayList<String>(9);
 		titles.add("商品编号");
 		titles.add("颜色");
-		titles.add("尺码34");
-		titles.add("尺码36");
-		titles.add("尺码38");
-		titles.add("尺码40");
-		titles.add("尺码42");
-		titles.add("尺码M");
 		List<String> fields = new ArrayList<String>(9);
 		fields.add("MODEL");
 		fields.add("COLOR");
-		fields.add("SIZE34");
-		fields.add("SIZE36");
-		fields.add("SIZE38");
-		fields.add("SIZE40");
-		fields.add("SIZE42");
-		fields.add("SIZEM");
-
-		String nameSql="";
-		String fileName="";
-		if(isExists==1){
-			nameSql="SellReturn.query_exists_sell_out_size_queue";
-			fileName="EJSELL_HHSJ("+DateUtils.formatDateAsyyyymmdd(new Date())+").xls";
-		}else{
-			nameSql="SellReturn.query_not_exists_sell_out_size_queue";
-			fileName="EJSELL_DMSJ("+DateUtils.formatDateAsyyyymmdd(new Date())+").xls";
+		for (String sizeName : listSizeName) {
+			titles.add("尺码"+sizeName);
+			fields.add("SIZE_" + sizeName);
 		}
-		
+
+		String fileName = "";
+		if (isExists == 1) {
+			fileName = "EJSELL_HHSJ(" + DateUtils.formatDateAsyyyymmdd(new Date()) + ").xls";
+		} else {
+			fileName = "EJSELL_DMSJ(" + DateUtils.formatDateAsyyyymmdd(new Date()) + ").xls";
+		}
+
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/msexcel;");
 		response.setHeader("Content-disposition", "attachment; filename=" + new String(fileName.getBytes("utf-8"), "ISO8859-1"));
-		List<Map<String, Object>> listSellReturn = sellReturnService.queryByNameSql(nameSql, null);
+		List<Map<String, Object>> listSellReturn = sellReturnService.queryBySql(sellReturnService.genExportSql(listSizeName, isExists), null);
 		InputStream is = excel.getInputStream(titles, fields, listSellReturn);
 		BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
 		byte[] buffer = new byte[1024];

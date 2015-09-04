@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.catalina.connector.ClientAbortException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.TypeMismatchException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -30,6 +31,7 @@ import com.chenjie.util.DateUtils;
 import com.chenjie.util.FileUtils;
 import com.ejsell.store.entity.SellOut;
 import com.ejsell.store.entity.SellReturn;
+import com.ejsell.store.service.SellOutService;
 import com.opencsv.CSVReader;
 
 /**
@@ -38,12 +40,15 @@ import com.opencsv.CSVReader;
  * @author 陈捷
  *
  */
-@SuppressWarnings("deprecation")
+@SuppressWarnings({ "deprecation", "resource" })
 public class BaseActionImpl {
 	Logger logger = Logger.getLogger(this.getClass());
 	public String errormessage;// 错误消息
 	public final String SUCCESS_CODE = "1";// 成功代码
 	public final String FAIL_CODE = "0";// 失败代码
+
+	@Autowired
+	public SellOutService sellOutService;
 
 	public String getErrormessage() {
 		return errormessage;
@@ -283,7 +288,7 @@ public class BaseActionImpl {
 					}
 				}
 
-				// 第二步，定位尺码列号
+				// 第二步，定位尺码列号(恩爵数据文件的尺码在商品编号的下一行)
 				String[] strs_size = listData.get(i + 1);
 				for (int k = 0; k < strs_size.length; k++) {
 					if ("34".equals(strs_size[k])) {
@@ -311,6 +316,36 @@ public class BaseActionImpl {
 
 			row_num++;
 
+		}// 初始化商品编号行位置、颜色列位置、尺码列位置结束
+
+		// 判断一下商品编号列位置是否正常
+		if (model_row_num == 0) {
+			throw new Exception("商品编号列定位失败，请检查数据文件!");
+		}
+
+		// 判断一下颜色列位置是否正常
+		if (color_col_num == 0) {
+			throw new Exception("颜色列定位失败，请检查数据文件!");
+		}
+
+		// 判断一下尺码列位置是否正常
+		if (size_col_34 == 0) {
+			throw new Exception("尺码34,列定位失败，请检查数据文件!");
+		}
+		if (size_col_36 == 0) {
+			throw new Exception("尺码36,列定位失败，请检查数据文件!");
+		}
+		if (size_col_38 == 0) {
+			throw new Exception("尺码38,列定位失败，请检查数据文件!");
+		}
+		if (size_col_40 == 0) {
+			throw new Exception("尺码40,列定位失败，请检查数据文件!");
+		}
+		if (size_col_42 == 0) {
+			throw new Exception("尺码42,列定位失败，请检查数据文件!");
+		}
+		if (size_col_M == 0) {
+			throw new Exception("尺码M,列定位失败，请检查数据文件!");
 		}
 
 		logger.info("model_row_num(商品编号出现的位置):" + model_row_num + ",row_num(循环了几次):" + row_num);
@@ -386,6 +421,111 @@ public class BaseActionImpl {
 	}
 
 	/**
+	 * 根据系统的配置来进行定位操作
+	 * 
+	 * @param csvFileName
+	 * @param listSizeName 尺码名称
+	 * @param sizeJumpLine 尺码行对应商品编号行需要跳跃的行数
+	 * @return
+	 * @throws Exception
+	 */
+	public List<SellOut> readSellOutByConfig(String csvFileName, List<String> listSizeName, int sizeJumpLine) throws Exception {
+		String field_model = "商品编号";
+		String field_color = "颜色";
+		String pre_model = "";// 上一个的商品编号，用来处理本次的商品编号为空的情况
+		int model_row_num = 0;// 商品编号行位置
+		int color_col_num = 0;// 颜色列位置
+
+		Map<String, Integer> map_size_col = new HashMap<String, Integer>();// 尺码列的哈希表
+
+		// 初始化销售出库列表
+		List<SellOut> listSellOut = new ArrayList<SellOut>();
+
+		File inFile = new File(csvFileName);
+		InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(inFile), "ISO-8859-1");
+		CSVReader csvReader = new CSVReader(inputStreamReader, ',');
+		List<String[]> listData = csvReader.readAll();
+		int row_num = 0;// 初始化行号
+		int list_data_size = listData.size();
+		// 初始化商品编号行位置、颜色列位置、尺码列位置
+		for (int i = 0; i < list_data_size; i++) {
+			String[] strs = listData.get(i);
+			// 直到循环到商品编号列后，进行定位操作
+			if (field_model.equals(new String(strs[1].getBytes("ISO-8859-1"), "GBK"))) {
+				model_row_num = i;// 商品编号出现的行位置
+				// 第一步，定位颜色列号
+				for (int j = 0; j < strs.length; j++) {
+					if (field_color.equals(new String(strs[j].getBytes("ISO-8859-1"), "GBK"))) {
+						color_col_num = j;
+						break;// 定位到颜色的列号后，退出j循环
+					}
+				}
+
+				// 第二步，定位尺码列号(恩爵数据文件的尺码在商品编号的下一行=1,璐嘉儿是在商品编号同一行=0)
+				String[] strs_size = listData.get(i + sizeJumpLine);
+				for (int k = 0; k < strs_size.length; k++) {
+					for (String sizeName : listSizeName) {
+						if (sizeName.equals(strs_size[k])) {
+							map_size_col.put(sizeName, k);
+						}
+					}
+				}
+
+				break;// 定位完尺码列序号后退出k循环
+			}
+
+			row_num++;
+
+		}// 初始化商品编号行位置、颜色列位置、尺码列位置结束
+
+		// 判断一下商品编号列位置是否正常
+		if (model_row_num == 0) {
+			throw new Exception("商品编号列定位失败，请检查数据文件!");
+		}
+
+		// 判断一下颜色列位置是否正常
+		if (color_col_num == 0) {
+			throw new Exception("颜色列定位失败，请检查数据文件!");
+		}
+
+		// 判断一下尺码列位置是否正常
+		for (String sizeName : listSizeName) {
+			// 如果尺码列的哈希表中不存在当前的尺码名称，则抛出异常
+			if (!map_size_col.containsKey(sizeName)) {
+				throw new Exception("尺码" + sizeName + ",列定位失败，请检查数据文件!");
+			}
+		}
+
+		logger.info("model_row_num(商品编号出现的位置):" + model_row_num + ",row_num(循环了几次):" + row_num);
+
+		// 从商品编号行+尺码跳跃行+1开始读取，直到listData.size结束
+		for (int i = (model_row_num + sizeJumpLine + 1); i < list_data_size; i++) {
+			String[] data = listData.get(i);
+			if (data[1] != null && !data[1].isEmpty()) {
+				pre_model = data[1];// 赋值给上一个商品编号，如果商品编号为空，则可以使用此商品编号
+			}
+
+			// 初始化销售出库单
+			// 如果尺码列有数据，则销售出库列表增加一条数据
+			for (String sizeName : listSizeName) {
+				if (data[map_size_col.get(sizeName)] != null && !data[map_size_col.get(sizeName)].isEmpty()) {
+					SellOut sellOut = new SellOut();
+					sellOut.setModel(pre_model);
+					sellOut.setColor(new String(data[color_col_num].getBytes("ISO-8859-1"), "GBK"));
+					sellOut.setSize(sizeName);
+					sellOut.setAmount(Integer.parseInt(data[map_size_col.get(sizeName)]));
+					listSellOut.add(sellOut);
+				}
+			}
+
+		}// for销售出库列表结束
+
+		csvReader.close();
+
+		return listSellOut;
+	}
+
+	/**
 	 * 将销售出货列表转换成销售退货列表
 	 * 
 	 * @param listSellOut 销售出货列表
@@ -404,5 +544,6 @@ public class BaseActionImpl {
 
 		return listSellReturn;
 	}
+
 
 }
