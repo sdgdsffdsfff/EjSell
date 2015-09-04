@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>安装页面</title>
+<title>初始化安装</title>
 <link rel="stylesheet" type="text/css" href="../js/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="../js/easyui/themes/icon.css">
 <script type="text/javascript" src="../js/easyui/jquery-1.8.0.min.js"></script>
@@ -11,7 +11,7 @@
 <script type="text/javascript" src="../js/easyui/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-	<div id="p" class="easyui-panel" title="提示信息" data-options="fit:true," style="height: 500px; padding: 10px; background: #fafafa;">
+	<div id="p" class="easyui-panel" title="初始化安装" data-options="fit:true," style="height: 500px; padding: 10px; background: #fafafa;">
 		<form action="install.do" method="post">
 		<table>
 			<tr>

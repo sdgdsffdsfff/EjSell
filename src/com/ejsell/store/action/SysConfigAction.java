@@ -83,8 +83,9 @@ public class SysConfigAction extends BaseActionImpl implements BaseAction<SysCon
 	public ModelAndView install(@RequestParam("sizeNames") String sizeNames, String sizeJumpLine,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("common/Message");
 
-		if (sizeNames == null || sizeNames.isEmpty()) {
-			mav.addObject("message", "尺码不能为空");
+		if (sizeNames == null || sizeNames.trim().isEmpty() || sizeNames.trim().length()==0) {
+			mav.addObject("message", "安装失败,尺码不能为空!");
+			return mav;
 		}
 
 		try {
@@ -97,6 +98,10 @@ public class SysConfigAction extends BaseActionImpl implements BaseAction<SysCon
 			for (String sizeName : strSizeName) {
 				SysConfig sysConfig = new SysConfig();
 				sysConfig.setName(SysConfigServiceImpl.config_size_col_name);
+				if(sizeName.isEmpty()){
+					mav.addObject("message", "尺码不能为空!配置失败，请重新配置。");
+					return mav;
+				}
 				sysConfig.setVal(sizeName);
 				listSysConfig.add(sysConfig);
 			}

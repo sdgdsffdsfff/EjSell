@@ -12,7 +12,7 @@
 <script type="text/javascript" src="./js/easyui/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-	<div id="p" class="easyui-panel" title="代销分析系统" data-options="fit:true," style="height: 500px; padding: 10px; background: #fafafa;">
+	<div id="p" class="easyui-panel" title="${applicationScope.projectName}(${applicationScope.version})" data-options="fit:true," style="height: 500px; padding: 10px; background: #fafafa;">
 		<p>
 		<h2>
 			<br />
