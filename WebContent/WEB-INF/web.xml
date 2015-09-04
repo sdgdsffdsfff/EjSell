@@ -59,7 +59,7 @@
 		<servlet-class>com.ejsell.base.action.InitProjectInfo</servlet-class>
 		<init-param>
 			<param-name>version</param-name>
-			<param-value>ver1.0.0</param-value>
+			<param-value>ver1.0.2</param-value>
 		</init-param>
 		<init-param>
 			<param-name>projectName</param-name>
