@@ -17,6 +17,7 @@
 			<tr>
 				<td>尺码名称(用逗号分隔):</td>
 				<td><input type="text" name="sizeNames" /></td>
+				<td>示例说明:恩爵的尺码名称输入34,36,38,40,42,M</td>
 			</tr>
 			<tr>
 				<td>品牌选择:</td>
@@ -26,10 +27,12 @@
 						<option value="0" >璐嘉儿</option>
 					</select>
 				</td>
+				<td></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td><input type="submit" value="安装"></td>
+				<td></td>
 			</tr>
 		</table>
 		</form>

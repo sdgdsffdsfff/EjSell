@@ -15,7 +15,7 @@
 		<p>
 		<h2>
 			<font color="#023c69"> ${message}
-			</font> <a class="easyui-linkbutton" data-options="iconCls:'icon-back'" href="../toMainPage.do">返回</a>
+			</font> <a class="easyui-linkbutton" data-options="iconCls:'icon-undo'" href="../toMainPage.do">返回</a>
 		</h2>
 		</p>
 	</div>

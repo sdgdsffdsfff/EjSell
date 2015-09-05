@@ -19,7 +19,9 @@
 		</h2>
 		<br />
 		<form id="frmUpload" action="importSellOut.do" method="POST" enctype="multipart/form-data">
-			选择文件:<input type="file" name="upload" style="width: 300px" /> <a id="btn_upload" onclick="uploadCheck()" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">导入数据</a>
+			选择文件:<input type="file" name="upload" style="width: 300px" /> 
+			<a id="btn_upload" onclick="uploadCheck()" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">导入数据</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-undo'" href="../toMainPage.do">返回</a>
 		</form>
 		</p>
 	</div>
