@@ -90,9 +90,10 @@ public class SysConfigAction extends BaseActionImpl implements BaseAction<SysCon
 
 		try {
 			// 首先清空原来的配置信息
-			String sql_clear_all_config = "truncate table SYS_CONFIG";
-			sysConfigService.executeSQL(sql_clear_all_config);
-
+			sysConfigService.executeSQL("truncate table SYS_CONFIG");
+			sysConfigService.executeSQL("truncate table sell_out");
+			sysConfigService.executeSQL("truncate table sell_return");
+			
 			String[] strSizeName = sizeNames.split(",");
 			List<SysConfig> listSysConfig = new ArrayList<SysConfig>();
 			for (String sizeName : strSizeName) {
@@ -114,7 +115,7 @@ public class SysConfigAction extends BaseActionImpl implements BaseAction<SysCon
 			sysConfigService.addBatch(listSysConfig);
 			
 			//删除安装文件
-			String installFilePath = request.getRealPath("/") + "install.inf";
+			String installFilePath = request.getRealPath("/") + "install.jsp";
 			installFilePath.replace("\\", "/");
 			if (FileUtils.fileExists(installFilePath)) {
 				FileUtils.removeFile(installFilePath);

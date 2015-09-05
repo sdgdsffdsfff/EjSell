@@ -12,7 +12,7 @@
 <script type="text/javascript" src="./js/easyui/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-	<div id="p" class="easyui-panel" title="${applicationScope.projectName}(${applicationScope.version})" data-options="fit:true," style="height: 500px; padding: 10px; background: #fafafa;">
+	<div id="p" class="easyui-panel" title="${applicationScope.projectName}(版本号:${applicationScope.version})" data-options="fit:true," style="height: 500px; padding: 10px; background: #fafafa;">
 		<p>
 		<h2>
 			<br />
@@ -26,12 +26,10 @@
 			<br />
 			<br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="SellOutAction/clearData.do">清空销售数据</a>
 			<%
-				String installFilePath = request.getRealPath("/") + "install.inf";
+				String installFilePath = request.getRealPath("/") + "install.jsp";
 				installFilePath.replace("\\", "/");
 				if (FileUtils.fileExists(installFilePath)) {
-			%>
-			<br /> <br /> <a class="easyui-linkbutton" data-options="iconCls:'icon-tip'" href="SysConfigAction/installPage.do">初始化安装</a>
-			<%
+					response.sendRedirect("install.jsp");
 				}
 			%>
 
